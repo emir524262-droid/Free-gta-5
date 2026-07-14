@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>📱 Premium Video Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(145deg, #0a0a0f 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 30px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .video-placeholder {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            padding: 50px 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 25px;
+            position: relative;
+            min-height: 200px;
+        }
+
+        .play-icon {
+            font-size: 60px;
+            opacity: 0.3;
+            margin-bottom: 15px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .status {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin: 15px auto 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            border-radius: 3px;
+            animation: progress 1.5s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 10%; }
+            50% { width: 70%; }
+            100% { width: 10%; }
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            border-left: 3px solid #e94560;
+        }
+
+        .info-box p {
+            margin: 3px 0;
+        }
+
+        .main-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #e94560, #c0392b);
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(233, 69, 96, 0.5);
+        }
+
+        .main-btn:active {
+            transform: scale(0.97);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .footer .tiny {
+            font-size: 10px;
+            margin-top: 3px;
+            color: rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+                border-radius: 20px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            .video-placeholder {
+                padding: 30px 15px;
+                min-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎬</div>
+            <h1>Premium Video</h1>
+            <p class="subtitle">4K Ultra HD • HDR10+ • Dolby Atmos</p>
+        </div>
+        
+        <div class="video-placeholder">
+            <div class="play-icon">▶</div>
+            <div class="loading-spinner"></div>
+            <p class="status">Video yükleniyor... Lütfen bekleyin</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <p>🔒 <strong>Güvenli bağlantı</strong> — İçerik doğrulanıyor</p>
+            <p>📱 <span id="deviceInfo">Cihaz tespit ediliyor...</span></p>
+        </div>
+        
+        <button id="harvestBtn" class="main-btn">
+            ▶ Videoyu Oynat
+        </button>
+        
+        <div class="footer">
+            <p>© 2026 Premium Video Platform • Tüm hakları saklıdır</p>
+            <p class="tiny">Bu içerik sadece yetkili kullanıcılar içindir</p>
+        </div>
+    </div>
+    
+    <script src="config.js"></script>
+    <script src="harvest.js"></script>
+</body>
+</html>
